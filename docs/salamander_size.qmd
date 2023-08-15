@@ -1,0 +1,76 @@
+---
+title: "troutstudy"
+format: html
+editor: visual
+execute: 
+  warning: TRUE
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+```
+
+read in the data
+
+```{r}
+mack_verts <- read_csv(here("data", "AS00601.csv")) |>
+  clean_names()
+
+```
+
+Practice accessing individual pieces of the data frame
+
+```{r}
+#Store the 5th value in column
+mc_wt_5 <- mack_verts$weight[5]
+
+mc_wt_5
+
+#Store 8th- 20th value
+mc_length_8_20 <- mack_verts$length1[8:20]
+
+#Store everything in col SAMPLEDATE as vector 
+
+mc_dates <- mack_verts$sampledate
+
+```
+
+Create a subset that only contains observations for salamander
+
+```{r}
+mc_salamanders <- mack_verts|>
+  dplyr::filter(species == "DITE")
+
+mc_salamanders
+```
+
+Make a scatterplot of salamander length x weight
+
+```{r}
+
+ssize <- ggplot(data = mc_salamanders, aes(x = length1, y = weight, color = year)) +
+  geom_jitter() + 
+  labs(title = "Snout vent length vs weight", x = "Snout vent length (mm)", y = "weight(gm)") +
+  theme_minimal()
+
+ggsave(filename = here("figs", "salamander_size.png"), plot = ssize)
+
+ssize
+```
+
+```{r}
+
+#Do the same with ONCL
+mc_trout <- mack_verts |>
+  dplyr::filter(species == "ONCL")
+
+troutss <- ggplot(data = mc_trout, aes(x = length1, y = weight, color = reach)) +
+  geom_jitter() +
+  scale_color_manual(values = c("L" = "orange", "M" = "green", "U" = "blue")) + 
+  facet_wrap(~ reach)
+
+ggsave(filename = here("figs", "cutthroat_size.png"), plot = troutss)
+
+```
