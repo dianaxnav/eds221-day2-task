@@ -78,3 +78,8 @@ max_count <- max(df_1$count)
 
 max_count
 ```
+
+Practice accessing individual pieces of the data frame
+
+```{}
+```
