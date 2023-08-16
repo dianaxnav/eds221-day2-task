@@ -208,18 +208,21 @@ date (1): SAMPLEDATE
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mc_trout <span class="ot">&lt;-</span> mack_verts <span class="sc">|&gt;</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"ONCL"</span>)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>troutss <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mc_trout, <span class="fu">aes</span>(<span class="at">x =</span> length1, <span class="at">y =</span> weight, <span class="at">color =</span> reach)) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"L"</span> <span class="ot">=</span> <span class="st">"orange"</span>, <span class="st">"M"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"U"</span> <span class="ot">=</span> <span class="st">"blue"</span>)) <span class="sc">+</span> </span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> reach)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="fu">here</span>(<span class="st">"figs"</span>, <span class="st">"cutthroat_size.png"</span>), <span class="at">plot =</span> troutss)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Saving 7 x 5 in image</code></pre>
-</div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#scale_color_manual allows you to adjust color scheme and the facet-wrap(~reach) allows you to separate the plots</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>troutss <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mc_trout, <span class="fu">aes</span>(<span class="at">x =</span> length1, <span class="at">y =</span> weight, <span class="at">color =</span> reach)) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"L"</span> <span class="ot">=</span> <span class="st">"orange"</span>, <span class="st">"M"</span> <span class="ot">=</span> <span class="st">"green"</span>, <span class="st">"U"</span> <span class="ot">=</span> <span class="st">"blue"</span>)) <span class="sc">+</span> </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> reach) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cutthroat trout length vs weight"</span>, <span class="at">x =</span> <span class="st">"Length(mm)"</span>, <span class="at">y =</span> <span class="st">"Weight(gm)"</span> )</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>troutss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 7841 rows containing missing values (`geom_point()`).</code></pre>
 </div>
+<div class="cell-output-display">
+<p><img src="salamander_size_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = here("figs", "cutthroat_size.png"), plot = troutss)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </main>

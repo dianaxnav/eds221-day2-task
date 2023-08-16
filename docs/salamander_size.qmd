@@ -66,11 +66,15 @@ ssize
 mc_trout <- mack_verts |>
   dplyr::filter(species == "ONCL")
 
+#scale_color_manual allows you to adjust color scheme and the facet-wrap(~reach) allows you to separate the plots
 troutss <- ggplot(data = mc_trout, aes(x = length1, y = weight, color = reach)) +
   geom_jitter() +
   scale_color_manual(values = c("L" = "orange", "M" = "green", "U" = "blue")) + 
-  facet_wrap(~ reach)
+  facet_wrap(~ reach) +
+  labs(title = "Cutthroat trout length vs weight", x = "Length(mm)", y = "Weight(gm)" )
 
-ggsave(filename = here("figs", "cutthroat_size.png"), plot = troutss)
+troutss
+
+#ggsave(filename = here("figs", "cutthroat_size.png"), plot = troutss)
 
 ```
